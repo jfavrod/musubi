@@ -1,4 +1,4 @@
-package config
+package context
 
 import (
 	"encoding/json"
@@ -16,18 +16,18 @@ type Config struct {
 	MailDir    string
 }
 
-// New config object.
-func New() Config {
-	var config Config
+// NewConfig config object.
+func newConfig() Config {
+	var conf Config
 	var configFile = getConfigFile()
 
-	json.Unmarshal(configFile, &config)
+	json.Unmarshal(configFile, &conf)
 
-	config.BlockDir = config.MailDir + "/" + config.BlockDir
-	config.BlockedDir = config.MailDir + "/" + config.BlockedDir
-	config.BlockList = config.MailDir + "/" + config.BlockList
+	conf.BlockDir = conf.MailDir + "/" + conf.BlockDir
+	conf.BlockedDir = conf.MailDir + "/" + conf.BlockedDir
+	conf.BlockList = conf.MailDir + "/" + conf.BlockList
 
-	return config
+	return conf
 }
 
 func getConfigDir() string {
