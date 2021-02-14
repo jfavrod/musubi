@@ -8,6 +8,7 @@ import (
 
 // Config for musibi.
 type Config struct {
+	// BlockDir the directory where user puts emails to be blocked.
 	BlockDir   string
 	BlockList  string
 	BlockedDir string
