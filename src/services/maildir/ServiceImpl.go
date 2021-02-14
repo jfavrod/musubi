@@ -1,4 +1,4 @@
-package services
+package maildir
 
 import (
 	"io/ioutil"
@@ -6,14 +6,14 @@ import (
 )
 
 // MaildirService for working with a users maildir.
-type MaildirService struct {
+type maildirService struct {
 	config context.Config
 	logger context.Logger
 }
 
-// New a new MaildirService object.
-func newMaildirService(config context.Config, logger context.Logger) MaildirService {
-	var svc MaildirService
+// NewMaildirService a new MaildirService object.
+func NewMaildirService(config context.Config, logger context.Logger) Service {
+	var svc maildirService
 	svc.config = config
 	svc.logger = logger
 
@@ -21,7 +21,7 @@ func newMaildirService(config context.Config, logger context.Logger) MaildirServ
 }
 
 // GetEmailsInBlocked ...
-func (svc MaildirService) GetEmailsInBlocked() []string {
+func (svc maildirService) GetEmailsInBlocked() []string {
 	var emails = make([]string, 5)
 	fileInfo, err := ioutil.ReadDir(svc.config.BlockDir)
 

@@ -2,12 +2,13 @@ package services
 
 import (
 	"musubi/src/context"
+	maildir "musubi/src/services/maildir"
 )
 
 // GetMaildirService ...
-func GetMaildirService() MaildirService {
-	return newMaildirService(
+func GetMaildirService() maildir.Service {
+	return maildir.NewMaildirService(
 		context.GetConfig(),
-		context.GetLogger(),
+		context.GetLogger("maildir.Service"),
 	)
 }

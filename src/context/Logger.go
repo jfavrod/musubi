@@ -12,7 +12,7 @@ type Logger struct {
 	warn  *log.Logger
 }
 
-func newLogger(conf Config) Logger {
+func newLogger(conf Config, id string) Logger {
 	var logger Logger
 	logfile, err := os.OpenFile(conf.LogFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
 
@@ -20,9 +20,9 @@ func newLogger(conf Config) Logger {
 		log.Fatal(err)
 	}
 
-	logger.error = log.New(logfile, "ERROR: ", log.Ldate|log.Ltime|log.Lshortfile)
-	logger.info = log.New(logfile, "INFO: ", log.Ldate|log.Ltime|log.Lshortfile)
-	logger.warn = log.New(logfile, "WARN: ", log.Ldate|log.Ltime|log.Lshortfile)
+	logger.error = log.New(logfile, "ERROR: ("+id+") ", log.Ldate|log.Ltime)
+	logger.info = log.New(logfile, "INFO: ("+id+") ", log.Ldate|log.Ltime)
+	logger.warn = log.New(logfile, "WARN: ("+id+") ", log.Ldate|log.Ltime)
 
 	return logger
 }

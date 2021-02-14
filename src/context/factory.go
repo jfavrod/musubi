@@ -6,6 +6,6 @@ func GetConfig() Config {
 }
 
 // GetLogger get an new logger object.
-func GetLogger() Logger {
-	return newLogger(newConfig())
+func GetLogger(id string) Logger {
+	return newLogger(newConfig(), id)
 }
