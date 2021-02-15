@@ -32,7 +32,10 @@ func (svc maildirService) GetEmailsInBlocked() []string {
 
 	for _, entry := range fileInfo {
 		if entry.IsDir() != true {
-			emails = append(emails, entry.Name())
+			emails = append(
+				emails,
+				svc.config.BlockDir+"/"+entry.Name(),
+			)
 		}
 	}
 
